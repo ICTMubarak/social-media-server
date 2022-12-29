@@ -24,7 +24,7 @@ async function run(){
 
          const statusCollection = client.db('statusCollection').collection('Sstatus');
         
-         app.post('/status', async(req, res) =>{
+         app.post('/addstatus', async(req, res) =>{
              const status = req.body;
              console.log(status); 
              const result = await statusCollection.insertOne(status);
@@ -34,15 +34,13 @@ async function run(){
 
       
 
-        app.get('/status', async(req, res)=>{
+        app.get('/allstatus', async(req, res)=>{
             const query = {};
             const cursor = statusCollection.find(query);
             const allStatus = await cursor.toArray();
             res.send(allStatus);
 
-       })
-
-      
+       }) 
         
     }
 
